@@ -1,4 +1,6 @@
 Max_version = 1.0 --最新的版本
+UDF1_CELabel2.Caption = "最新版本: " .. New_version
+
 
 function UDF1_CEButton1Click(sender)
 shellExecute("https://wwog.lanzouk.com/b00uyecn8d") --下載鏈接
