@@ -1,0 +1,10 @@
+Max_version = 1.0 --最新的版本
+
+function UDF1_CEButton1Click(sender)
+shellExecute("https://wwog.lanzouk.com/b00uyecn8d") --下載鏈接
+end
+
+
+function UDF1_CEButton2Click(sender)
+UDF1.hide()
+end
