@@ -1,6 +1,82 @@
 Max_version = 1.0 --最新的版本
 announcement = "這個輔助更新了基礎的功能 2024/8/28"
-CETrainer_CEMemo1.Lines.Text = announcement
+CETrainer_CEMemo1.Lines.Text = announcement--公告
+PROCESS_NAME = 'MiniGameApp.exe'
+if not openProcess(PROCESS_NAME) then
+    messageDialog("错误: 无法找到应用程序，请重新打开", mtError)
+    closeCE()
+    return
+end
+
+local PROCESS_NAME = 'MiniGameApp.exe'
+
+local function getHostname()
+    local handle = io.popen("hostname")
+    if handle then
+        local hostname = handle:read("*l")
+        handle:close()
+        return hostname:match("^%s*(.-)%s*$")
+    else
+        showMessage("错误: 无法获取计算机名!")
+        closeCE()
+        return nil
+    end
+end
+
+local function isHostnameVip(hostname)--主機判斷
+    local vipHostnames = {
+        "LAPTOP-2QC5QJ83", "DESKTOP-E8IELO5", "ACER-Windows11", "DESKTOP-40AHL7Q", "DESKTOP-FISCPB3"
+    }
+    for _, vipHostname in ipairs(vipHostnames) do
+        if hostname == vipHostname then
+            return true
+        end
+    end
+    return false
+end
+
+local hostname = getHostname()
+
+if hostname then
+    isVip = isHostnameVip(hostname)
+
+    if isVip then
+
+    else
+        messageDialog("错误: 主机名不被允许", mtError)
+        closeCE()
+    end
+else
+    -- 如果无法获取主机名
+    messageDialog("错误: 无法获取计算机名!", mtError)
+    closeCE()
+end
+
+local miniuid = readInteger("[[libiworld.g_nHomeGardenSaveVersion+424]+C]+0")
+
+if miniuid == nil then
+    messageDialog("错误: 无法读取内存，必须进入您的账户以检查玩家ID", mtError)
+    closeCE()
+    return
+end
+
+-- VIP UID 列表
+local vipUIDs = {1088712050, 1089142268, 1251995024, 1300614537}--玩家uid判斷
+local isVipUID = false
+
+for i = 1, #vipUIDs do
+    if miniuid == vipUIDs[i] then
+        isVipUID = true
+        break
+    end
+end
+
+if isVipUID then
+elseif isVip then
+else
+    messageDialog("错误: 玩家ID不正确!", mtError)
+    closeCE()
+end
 function CETrainer_CECustomButton2Click(sender)
 if CETrainer_CECheckbox1.Checked == true then
 CETrainer.hide()
