@@ -75,12 +75,6 @@ else
     messageDialog("错误: 玩家ID不正确!", mtError)
     closeCE()
 end
-function CETrainer_CECustomButton2Click(sender)
-if CETrainer_CECheckbox1.Checked == true then
-CETrainer.hide()
-UDF2.show()
-UDF2_CEMemo1.Lines.Text = announcement --綫上公告
---連接游戲
 function GameInject(exe)
     local game = exe
     local processID = getProcessIDFromProcessName(game)
@@ -90,7 +84,18 @@ function GameInject(exe)
         showMessage("進程不存在，請重新打開游戲再嘗試")
     end
 end
+
+function CETrainer_CECustomButton2Click(sender)
+if CETrainer_CECheckbox1.Checked == true then
+
+--連接游戲
+CETrainer_CECustomButton2.Enabled = false
 GameInject("MiniGameApp.exe")
+sleep(500)
+CETrainer.hide()
+sleep(500)
+UDF2.show()
+UDF2_CEMemo1.Lines.Text = announcement --綫上公告
 myuid = readInteger("[[libiworld.g_nHomeGardenSaveVersion+424]+0C]+0")
 hostuid = readInteger("[libSandboxEngine.g_WorldMgr]+8C")
 pingg = readInteger("libSandboxEngine.RoomSyncResMgr::s_pInstance+32C")
