@@ -7,9 +7,7 @@ if not openProcess(PROCESS_NAME) then
     closeCE()
     return
 end
-
 local PROCESS_NAME = 'MiniGameApp.exe'
-
 local function getHostname()
     local handle = io.popen("hostname")
     if handle then
