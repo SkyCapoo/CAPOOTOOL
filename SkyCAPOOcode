@@ -172,7 +172,29 @@ local chatww =
 showCustomMessage("用戶使用協議", chatww)
 else
 
-
-
 end
 end
+
+function UDF2_CEButton5Click(sender)
+shellExecute("https://qm.qq.com/q/cYKztfFoXe")
+end
+
+function UDF2_CEButton6Click(sender)
+shellExecute("https://discord.gg/jSwyC4kHvC")
+end
+function UDF2_CEButton8Click(sender)
+UDF2.hide()
+sleep(500)
+CETrainer.show()
+end
+
+function UDF2_CEButton9Click(sender)
+closeCE()
+return caFree
+end
+
+function UDF2_CEButton7Click(sender)
+UDF2_CEMemo1.Lines.Text = announcement --綫上公告
+end
+
+
