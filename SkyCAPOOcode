@@ -61,7 +61,7 @@ if miniuid == nil then
 end
 
 -- VIP UID 列表
-local vipUIDs = {1088712050, 1089142268, 1251995024, 1300614537}--玩家uid判斷
+local vipUIDs = {1088712050, 1089142268, 1251995024, 1300614537, 1277719384}--玩家uid判斷
 local isVipUID = false
 
 for i = 1, #vipUIDs do
