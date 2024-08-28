@@ -1,5 +1,5 @@
 Max_version = 1.0 --最新的版本
-UDF1_CELabel2.Caption = "最新版本: " .. New_version
+UDF1_CELabel2.Caption = "最新版本: " .. Max_version
 
 
 function UDF1_CEButton1Click(sender)
