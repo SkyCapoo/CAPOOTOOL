@@ -92,6 +92,7 @@ if CETrainer_CECheckbox1.Checked == true then
 CETrainer_CECustomButton2.Enabled = false
 GameInject("MiniGameApp.exe")
 sleep(500)
+CETrainer_CECustomButton2.Enabled = true
 CETrainer.hide()
 sleep(500)
 UDF2.show()
