@@ -25,7 +25,7 @@ end
 
 local function isHostnameVip(hostname)--主機判斷
     local vipHostnames = {
-        "LAPTOP-2QC5QJ83", "DESKTOP-E8IELO5", "ACER-Windows11", "DESKTOP-40AHL7Q", "DESKTOP-FISCPB3"
+        "LAPTOP-2QC5QJ83", "DESKTOP-E8IELO5", "ACER-Windows11", "DESKTOP-40AHL7Q", "DESKTOP-FISCPB3", "kaikai" ,
     }
     for _, vipHostname in ipairs(vipHostnames) do
         if hostname == vipHostname then
