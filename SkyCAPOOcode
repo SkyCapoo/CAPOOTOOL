@@ -3,14 +3,15 @@ announcement = "這個輔助更新了基礎的功能 2024/8/28"
 CETrainer_CEMemo1.Lines.Text = announcement--公告
 
 ---------------------------------------------------------------檢測功能---------------------------------------------------------------
-
 PROCESS_NAME = 'MiniGameApp.exe'
 if not openProcess(PROCESS_NAME) then
-    messageDialog("错误: 无法找到应用程序，请重新打开", mtError)
+    messageDialog("錯誤: 無法找到應用程式，請重新打開", mtError)
     closeCE()
     return
 end
+
 local PROCESS_NAME = 'MiniGameApp.exe'
+
 local function getHostname()
     local handle = io.popen("hostname")
     if handle then
@@ -18,15 +19,15 @@ local function getHostname()
         handle:close()
         return hostname:match("^%s*(.-)%s*$")
     else
-        showMessage("错误: 无法获取计算机名!")
+        showMessage("錯誤: 無法取得電腦名稱！")
         closeCE()
         return nil
     end
 end
 
-local function isHostnameVip(hostname)--主機判斷
+local function isHostnameVip(hostname)
     local vipHostnames = {
-        "LAPTOP-2QC5QJ83", "DESKTOP-E8IELO5", "ACER-Windows11", "DESKTOP-40AHL7Q", "DESKTOP-FISCPB3"
+         "LAPTOP-2QC5QJ83", "DESKTOP-E8IELO5", "ACER-Windows11", "DESKTOP-40AHL7Q", "DESKTOP-FISCPB3"
     }
     for _, vipHostname in ipairs(vipHostnames) do
         if hostname == vipHostname then
@@ -42,21 +43,22 @@ if hostname then
     isVip = isHostnameVip(hostname)
 
     if isVip then
-
+    canusehack1 = 1
     else
-        messageDialog("错误: 主机名不被允许", mtError)
-        closeCE()
+    canusehack1 = 2
     end
 else
     -- 如果无法获取主机名
-    messageDialog("错误: 无法获取计算机名!", mtError)
+    messageDialog("錯誤: 無法取得電腦名稱！", mtError)
     closeCE()
 end
+
+
 
 local miniuid = readInteger("[[libiworld.g_nHomeGardenSaveVersion+424]+C]+0")
 
 if miniuid == nil then
-    messageDialog("错误: 无法读取内存，必须进入您的账户以检查玩家ID", mtError)
+    messageDialog("錯誤: 無法讀取記憶體,必須進入您的帳戶以檢查玩家ID", mtError)
     closeCE()
     return
 end
@@ -72,21 +74,16 @@ for i = 1, #vipUIDs do
     end
 end
 
-if isVipUID then
-elseif isVip then
+
+if isVipUID and canusehack1 == 2 then
+elseif not isVipUID and canusehack1 == 1 then
+elseif isVipUID and canusehack1 == 1 then
 else
-    messageDialog("错误: 玩家ID不正确!", mtError)
+    messageDialog("您不是使用者", mtError)
     closeCE()
+    return
 end
-function GameInject(exe)
-    local game = exe
-    local processID = getProcessIDFromProcessName(game)
-    if processID ~= nil then
-        openProcess(game)
-    else
-        showMessage("進程不存在，請重新打開游戲再嘗試")
-    end
-end
+
 
 ---------------------------------------------------------------界面功能---------------------------------------------------------------
 
