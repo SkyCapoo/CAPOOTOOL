@@ -259,7 +259,7 @@ end
 end
 
 function UDF2_CECheckbox7Click(sender)
-if UDF2_CECheckbox7.Checked == true thenn
+if UDF2_CECheckbox7.Checked == true then
 writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+a8",getProperty(UDF2_CEEdit11,"text"))
 else
 end
