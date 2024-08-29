@@ -1,6 +1,8 @@
 Max_version = 1.0 --最新的版本
 announcement = "這個輔助更新了基礎的功能 2024/8/28"
 CETrainer_CEMemo1.Lines.Text = announcement--公告
+-------------------------------------------------------------功能模塊----------------------------------------------------------------
+
 function toSigned32(value) --負數修正
     if value >= 0x80000000 then
         return value - 0x100000000
@@ -616,3 +618,32 @@ dealloc(gotoZ)
 unregistersymbol(gotoZ)
 ]=])
 end
+
+----------------------------------------------------時間天數-----------------------------------------
+
+function UDF2_CEButton12Click(sender)
+writeInteger("[libSandboxEngine.g_WorldMgr]+17C",(getProperty(UDF2_CEEdit16,"text")*24000)-23999)
+end
+
+function UDF2_CEButton13Click(sender)
+writeInteger("[libSandboxEngine.g_WorldMgr]+180",(getProperty(UDF2_CEEdit17,"text")*1000)-6000)
+end
+
+function UDF2_CECheckbox23Click(sender)
+if UDF2_CECheckbox23.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(locktime,libSandboxEngine.dll,89 86 80 01 00 00 74) // should be unique
+registersymbol(locktime)
+locktime:
+  db 90 90 90 90 90 90
+]=])
+else
+autoAssemble([=[{$asm}
+locktime:
+  db 89 86 80 01 00 00
+unregistersymbol(locktime)
+dealloc(locktime)
+]=])
+end
+end
+--------------------------------------------------聯機功能--------------------------------------------
