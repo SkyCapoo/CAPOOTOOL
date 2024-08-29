@@ -200,16 +200,13 @@ end
 --writeFloat
 function UDF2_CECheckbox1Click(sender)
 if UDF2_CECheckbox1.Checked == true then
-maxhp = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+98")
 writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+98",getProperty(UDF2_CEEdit5,"text"))
 else
-writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+98",maxhp)
 end
 end
 
 function UDF2_CECheckbox2Click(sender)
 if UDF2_CECheckbox2.Checked == true then
-myhp = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+94")
 if Freezehp then Freezehp.destroy(); Freezehp = nil end
 Freezehp = createTimer(getMainForm())
 Freezehp.interval = 100
@@ -218,22 +215,18 @@ writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+94",getProperty(UDF2_CEEdit6,
 end
 else
 if Freezehp then Freezehp.destroy(); Freezehp = nil end
-writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+94",myhp)
 end
 end
 
 function UDF2_CECheckbox3Click(sender)
 if UDF2_CECheckbox3.Checked == true then
-maxhunger = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+22c")
 writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+22c",getProperty(UDF2_CEEdit7,"text"))
 else
-writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+22c",maxhunger)
 end
 end
 
 function UDF2_CECheckbox4Click(sender)
 if UDF2_CECheckbox4.Checked == true then
-myhunger = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+220")
 if Freezehunger then Freezehunger.destroy(); Freezehunger = nil end
 Freezehunger = createTimer(getMainForm())
 Freezehunger.interval = 100
@@ -242,22 +235,18 @@ writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+220",getProperty(UDF2_CEEdit8
 end
 else
 if Freezehunger then Freezehunger.destroy(); Freezehunger = nil end
-writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+220",myhunger)
 end
 end
 
 function UDF2_CECheckbox5Click(sender)
 if UDF2_CECheckbox5.Checked == true then
-maxstr = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+288")
 writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+288",getProperty(UDF2_CEEdit9,"text"))
 else
-writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+288",maxstr)
 end
 end
 
 function UDF2_CECheckbox6Click(sender)
 if UDF2_CECheckbox6.Checked == true then
-mystr = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+280")
 if Freezestr then Freezestr.destroy(); Freezestr = nil end
 Freezestr = createTimer(getMainForm())
 Freezestr.interval = 100
@@ -266,16 +255,13 @@ writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+280",getProperty(UDF2_CEEdit1
 end
 else
 if Freezestr then Freezestr.destroy(); Freezestr = nil end
-writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+280",mystr)
 end
 end
 
 function UDF2_CECheckbox7Click(sender)
-if UDF2_CECheckbox7.Checked == true then
-backhp = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+a8")
+if UDF2_CECheckbox7.Checked == true thenn
 writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+a8",getProperty(UDF2_CEEdit11,"text"))
 else
-writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+a8",backhp)
 end
 end
 
