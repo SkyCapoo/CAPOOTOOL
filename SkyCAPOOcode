@@ -1,7 +1,13 @@
 Max_version = 1.0 --最新的版本
 announcement = "這個輔助更新了基礎的功能 2024/8/28"
 CETrainer_CEMemo1.Lines.Text = announcement--公告
-
+function toSigned32(value) --負數修正
+    if value >= 0x80000000 then
+        return value - 0x100000000
+    else
+        return value
+    end
+end
 ---------------------------------------------------------------檢測功能---------------------------------------------------------------
 PROCESS_NAME = 'MiniGameApp.exe'
 if not openProcess(PROCESS_NAME) then
@@ -548,4 +554,56 @@ db FF 4C 37 08 EB 0E
 unregistersymbol(hyacke)
 ]=])
 end
+end
+
+
+function UDF2_CEButton11Click(sender)
+UDF2_CEEdit2.Text = string.format("%.1f",toSigned32(readInteger("[[libSandboxEngine.g_pPlayerCtrl]+270]+DC")) / 100)
+UDF2_CEEdit3.Text = string.format("%.1f",toSigned32(readInteger("[[libSandboxEngine.g_pPlayerCtrl]+270]+E0")) / 100)
+UDF2_CEEdit4.Text = string.format("%.1f",toSigned32(readInteger("[[libSandboxEngine.g_pPlayerCtrl]+270]+E4")) / 100)
+end
+
+function UDF2_CEButton10Click(sender)
+autoAssemble([=[{$asm}
+alloc(gotoX,8)
+registersymbol(gotoX)
+alloc(gotoY,8)
+registersymbol(gotoY)
+alloc(gotoZ,8)
+registersymbol(gotoZ)
+gotoX:
+dd #1000
+gotoY:
+dd #700
+gotoZ:
+dd #1000
+]=])
+sleep(20)
+writeInteger("gotoX",getProperty(UDF2_CEEdit2,"text") * 100)
+writeInteger("gotoY",getProperty(UDF2_CEEdit3,"text") * 100)
+writeInteger("gotoZ",getProperty(UDF2_CEEdit4,"text") * 100)
+sleep(20)
+autoAssemble([=[{$asm}
+alloc(tpcall,256)
+createthread(tpcall)
+tpcall:
+pushad
+push [gotoZ]
+push [gotoY]
+push [gotoX]
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+mov ecx,[ecx+270]
+call libSandboxEngine.ActorLocoMotion::setPosition
+popad
+ret
+]=])
+sleep(100)
+autoAssemble([=[{$asm}
+dealloc(gotoX)
+unregistersymbol(gotoX)
+dealloc(gotoY)
+unregistersymbol(gotoY)
+dealloc(gotoZ)
+unregistersymbol(gotoZ)
+]=])
 end
