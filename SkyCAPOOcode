@@ -8,6 +8,15 @@ function toSigned32(value) --負數修正
         return value
     end
 end
+function GameInject(exe)
+    local game = exe
+    local processID = getProcessIDFromProcessName(game)
+    if processID ~= nil then
+        openProcess(game)
+    else
+        showMessage("進程不存在，請打開游戲重新嘗試")
+    end
+end
 ---------------------------------------------------------------檢測功能---------------------------------------------------------------
 PROCESS_NAME = 'MiniGameApp.exe'
 if not openProcess(PROCESS_NAME) then
