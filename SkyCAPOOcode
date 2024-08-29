@@ -109,7 +109,9 @@ fpss = readFloat("[libMiniBaseEngine.dll+91f120]+2C")
 fps = string.format("%.1f", fpss)
 UDF2_CEMemo1.Lines.Text = announcement
 UDF2_CELabel1.Caption = "UID:  " .. myuid
+if hostuid then
 UDF2_CELabel2.Caption = "房主UID:  " .. hostuid
+return end
 UDF2_CELabel3.Caption = "Ping:  " .. pingg
 UDF2_CELabel4.Caption = "FPS:  " .. fps
 else
@@ -125,7 +127,9 @@ fpss = readFloat("[libMiniBaseEngine.dll+91f120]+2C")
 fps = string.format("%.1f", fpss)
 UDF2_CEMemo1.Lines.Text = announcement
 UDF2_CELabel1.Caption = "UID:  " .. myuid
+if hostuid then
 UDF2_CELabel2.Caption = "房主UID:  " .. hostuid
+return end
 UDF2_CELabel3.Caption = "Ping:  " .. pingg
 UDF2_CELabel4.Caption = "FPS:  " .. fps
 end
