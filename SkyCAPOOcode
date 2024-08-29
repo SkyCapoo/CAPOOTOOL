@@ -196,5 +196,122 @@ end
 function UDF2_CEButton7Click(sender)
 UDF2_CEMemo1.Lines.Text = announcement --綫上公告
 end
+--writeInteger
+--writeFloat
+function UDF2_CECheckbox1Click(sender)
+if UDF2_CECheckbox1.Checked == true then
+maxhp = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+98")
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+98",getProperty(UDF2_CEEdit5,"text"))
+else
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+98",maxhp)
+end
+end
 
+function UDF2_CECheckbox2Click(sender)
+if UDF2_CECheckbox2.Checked == true then
+myhp = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+94")
+if Freezehp then Freezehp.destroy(); Freezehp = nil end
+Freezehp = createTimer(getMainForm())
+Freezehp.interval = 100
+Freezehp.OnTimer = function()
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+94",getProperty(UDF2_CEEdit6,"text"))
+end
+else
+if Freezehp then Freezehp.destroy(); Freezehp = nil end
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+94",myhp)
+end
+end
+
+function UDF2_CECheckbox3Click(sender)
+if UDF2_CECheckbox3.Checked == true then
+maxhunger = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+22c")
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+22c",getProperty(UDF2_CEEdit7,"text"))
+else
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+22c",maxhunger)
+end
+end
+
+function UDF2_CECheckbox4Click(sender)
+if UDF2_CECheckbox4.Checked == true then
+myhunger = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+220")
+if Freezehunger then Freezehunger.destroy(); Freezehunger = nil end
+Freezehunger = createTimer(getMainForm())
+Freezehunger.interval = 100
+Freezehunger.OnTimer = function()
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+220",getProperty(UDF2_CEEdit8,"text"))
+end
+else
+if Freezehunger then Freezehunger.destroy(); Freezehunger = nil end
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+220",myhunger)
+end
+end
+
+function UDF2_CECheckbox5Click(sender)
+if UDF2_CECheckbox5.Checked == true then
+maxstr = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+288")
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+288",getProperty(UDF2_CEEdit9,"text"))
+else
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+288",maxstr)
+end
+end
+
+function UDF2_CECheckbox6Click(sender)
+if UDF2_CECheckbox6.Checked == true then
+mystr = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+280")
+if Freezestr then Freezestr.destroy(); Freezestr = nil end
+Freezestr = createTimer(getMainForm())
+Freezestr.interval = 100
+Freezestr.OnTimer = function()
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+280",getProperty(UDF2_CEEdit10,"text"))
+end
+else
+if Freezestr then Freezestr.destroy(); Freezestr = nil end
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+280",mystr)
+end
+end
+
+function UDF2_CECheckbox7Click(sender)
+if UDF2_CECheckbox7.Checked == true then
+backhp = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+a8")
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+a8",getProperty(UDF2_CEEdit11,"text"))
+else
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+a8",backhp)
+end
+end
+
+function UDF2_CECheckbox8Click(sender)
+if UDF2_CECheckbox8.Checked == true then
+jfhud = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+14C")
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+14C",getProperty(UDF2_CEEdit12,"text"))
+else
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+14C",jfhud)
+end
+end
+
+function UDF2_CECheckbox9Click(sender)
+if UDF2_CECheckbox9.Checked == true then
+jattack = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+144")
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+144",getProperty(UDF2_CEEdit13,"text"))
+else
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+144",jattack)
+end
+end
+
+function UDF2_CECheckbox10Click(sender)
+if UDF2_CECheckbox10.Checked == true then
+yfhud = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+155")
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+155",getProperty(UDF2_CEEdit14,"text"))
+else
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+155",yfhud)
+end
+end
+
+function UDF2_CECheckbox11Click(sender)
+if UDF2_CECheckbox11.Checked == true then
+yattack = readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+148")
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+148",getProperty(UDF2_CEEdit15,"text"))
+else
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+148",yattack)
+end
+end
 
