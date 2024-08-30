@@ -1147,45 +1147,6 @@ end
 function UDF2_CECheckbox46Click(sender)
 if UDF2_CECheckbox46.Checked == true then
 autoAssemble([=[{$asm}
-aobscanmodule(gamemodeTool,libSandboxEngine.dll,83 B9 6C 02 00 00 00)
-alloc(newmem,$1000)
-label(code)
-label(return)
-alloc(toolmode,8)
-registersymbol(toolmode)
-newmem:
-code:
-cmp dword ptr [ecx+0000026C],00
-push edi
-lea edi,[ecx+0000026C]
-mov [toolmode],edi
-pop edi
-jmp return
-gamemodeTool:
-  jmp newmem
-  nop 2
-return:
-registersymbol(gamemodeTool)
-]=])
-sleep(50)
-writeInteger("[toolmode]+0",1)
-else
-writeInteger("[toolmode]+0",0)
-sleep(50)
-autoAssemble([=[{$asm}
-gamemodeTool:
-  db 83 B9 6C 02 00 00 00
-unregistersymbol(gamemodeTool)
-dealloc(newmem)
-unregistersymbol(toolmode)
-dealloc(toolmode)
-]=])
-end
-end
-
-function UDF2_CECheckbox48Click(sender)
-if UDF2_CECheckbox48.Checked == true then
-autoAssemble([=[{$asm}
 aobscanmodule(gamemodehome,libSandboxEngine.dll,83 B8 90 01 00 00 01 75 1F)
 alloc(newmem,$1000)
 label(code)
@@ -1218,6 +1179,47 @@ unregistersymbol(gamemodehome)
 dealloc(newmem)
 unregistersymbol(homemode)
 dealloc(homemode)
+]=])
+end
+end
+
+
+function UDF2_CECheckbox48Click(sender)
+if UDF2_CECheckbox48.Checked == true then
+
+autoAssemble([=[{$asm}
+aobscanmodule(gamemodeTool,libSandboxEngine.dll,83 B9 6C 02 00 00 00)
+alloc(newmem,$1000)
+label(code)
+label(return)
+alloc(toolmode,8)
+registersymbol(toolmode)
+newmem:
+code:
+cmp dword ptr [ecx+0000026C],00
+push edi
+lea edi,[ecx+0000026C]
+mov [toolmode],edi
+pop edi
+jmp return
+gamemodeTool:
+  jmp newmem
+  nop 2
+return:
+registersymbol(gamemodeTool)
+]=])
+sleep(50)
+writeInteger("[toolmode]+0",1)
+else
+writeInteger("[toolmode]+0",0)
+sleep(50)
+autoAssemble([=[{$asm}
+gamemodeTool:
+  db 83 B9 6C 02 00 00 00
+unregistersymbol(gamemodeTool)
+dealloc(newmem)
+unregistersymbol(toolmode)
+dealloc(toolmode)
 ]=])
 end
 end
