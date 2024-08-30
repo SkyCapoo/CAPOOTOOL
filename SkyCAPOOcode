@@ -647,3 +647,617 @@ dealloc(locktime)
 end
 end
 --------------------------------------------------聯機功能--------------------------------------------
+
+
+
+function UDF2_CECheckbox24Click(sender)
+if UDF2_CECheckbox24.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(infjump,libSandboxEngine.dll,80 B8 A4 00 00 00 00 74 5A) // should be unique
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+mov [eax+000000A4],#1
+code:
+  cmp byte ptr [eax+000000A4],00
+  jmp return
+
+infjump:
+  jmp newmem
+  nop 2
+return:
+registersymbol(infjump)
+]=])
+else
+autoAssemble([=[{$asm}
+infjump:
+  db 80 B8 A4 00 00 00 00
+unregistersymbol(infjump)
+dealloc(newmem)
+]=])
+end
+end
+
+function UDF2_CECheckbox25Click(sender)
+if UDF2_CECheckbox25.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(INJECTjump,libSandboxEngine.dll,74 ?? 8B 06 8B CE FF 90 ?? ?? ?? ?? 8B 45 ?? 5F)
+INJECTjump:
+  db 90 90
+registersymbol(INJECTjump)
+]=])
+else
+autoAssemble([=[{$asm}
+INJECTjump:
+  db 74 7A
+unregistersymbol(INJECTjump)
+]=])
+end
+end
+
+function UDF2_CECheckbox26Click(sender)
+if UDF2_CECheckbox26.Checked == true then
+writeInteger("[libSandboxEngine.g_pPlayerCtrl]+23C",8)
+autoAssemble([=[{$asm}
+aobscanmodule(flyy,libSandboxEngine.dll,8B 86 3C 02 00 00 C1 E8 06 A8 01 0F 84) // should be unique
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+  mov [esi+0000023C],#8
+code:
+  mov eax,[esi+0000023C]
+  jmp return
+
+flyy:
+  jmp newmem
+  nop
+return:
+registersymbol(flyy)
+]=])
+writeInteger("[libSandboxEngine.g_pPlayerCtrl]+23C",8)
+else
+autoAssemble([=[{$asm}
+flyy:
+  db 8B 86 3C 02 00 00
+unregistersymbol(flyy)
+dealloc(newmem)
+]=])
+writeInteger("[libSandboxEngine.g_pPlayerCtrl]+23C",0)
+end
+end
+
+function UDF2_CECheckbox27Click(sender)
+if UDF2_CECheckbox27.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(InputHelperfly,libSandboxEngine.dll,74 ?? 8B 3D ?? ?? ?? ?? FF D7 8B 0D)
+InputHelperfly:
+  db 90 90
+registersymbol(InputHelperfly)
+]=])
+else
+autoAssemble([=[{$asm}
+
+InputHelperfly:
+  db 74 79
+unregistersymbol(InputHelperfly)
+]=])
+end
+end
+
+function UDF2_CECheckbox28Click(sender)
+if UDF2_CECheckbox28.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(INJECTqws,libSandboxEngine.dll,81 C9 00 20 00 00 83) // should be unique
+INJECTqws:
+  db 81 C9 00 90 00 00
+registersymbol(INJECTqws)
+aobscanmodule(Aobflynop,libSandboxEngine.dll,83 C9 10 8B C1)
+Aobflynop:
+db 90 90 90
+registersymbol(Aobflynop)
+]=])
+else
+autoAssemble([=[{$asm}
+Aobflynop:
+db 83 C9 10
+INJECTqws:
+  db 81 C9 00 20 00 00
+unregistersymbol(Aobflynop)
+unregistersymbol(INJECTqws)
+]=])
+end
+end
+
+function UDF2_CECheckbox29Click(sender)
+if UDF2_CECheckbox29.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(lhcqpro,libSandboxEngine.dll,0F 84 06 0E 00 00) // should be unique
+lhcqpro:
+db 0F 85 06 0E 00 00
+registersymbol(lhcqpro)
+]=])
+else
+autoAssemble([=[{$asm}
+lhcqpro:
+  db 0F 84 06 0E 00 00
+unregistersymbol(lhcqpro)
+dealloc(lhcqpro)
+]=])
+end
+end
+
+function UDF2_CECheckbox30Click(sender)
+if UDF2_CECheckbox30.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(lenjump,libSandboxEngine.dll,0F 84 ?? ?? ?? ?? 8A 54 24 ?? 84 D2)
+lenjump:
+db 0f 85
+registersymbol(lenjump)
+]=])
+else
+autoAssemble([=[{$asm}
+lenjump:
+db 0f 84
+unregistersymbol(lenjump)
+]=])
+end
+end
+
+function UDF2_CECheckbox31Click(sender)
+if UDF2_CECheckbox31.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(canmoveonstart,libSandboxEngine.dll,0F 84 ?? ?? ?? ?? 8B CF E8 ?? ?? ?? ?? 50 E8 ?? ?? ?? ?? 8B 48 ?? E8 ?? ?? ?? ?? 84 C0 75) // should be unique
+canmoveonstart:
+db 0F 85
+registersymbol(canmoveonstart)
+]=])
+else
+autoAssemble([=[{$asm}
+canmoveonstart:
+db 0F 84
+unregistersymbol(canmoveonstart)
+]=])
+end
+end
+
+function UDF2_CECheckbox32Click(sender)
+if UDF2_CECheckbox32.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(ICEskat,libSandboxEngine.dll,76 ?? F3 0F 10 0D ?? ?? ?? ?? F3 0F 11 4D ?? ?? ??)
+ICEskat:
+  db 90 90
+registersymbol(iceskat)
+]=])
+else
+autoAssemble([=[{$asm}
+ICEskat:
+  db 76 0D
+unregistersymbol(ICEskat)
+]=])
+end
+end
+
+function UDF2_CECheckbox33Click(sender)
+if UDF2_CECheckbox33.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(slowfalldown,libSandboxEngine.dll,0F 84 4D 01 00 00 8B 93)
+slowfalldown:
+db 0F 85
+registersymbol(slowfalldown)
+]=])
+else
+autoAssemble([=[{$asm}
+slowfalldown:
+db 0F 84
+unregistersymbol(slowfalldown)
+]=])
+end
+end
+
+function UDF2_CECheckbox34Click(sender)
+if UDF2_CECheckbox34.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(INJECTdf,libSandboxEngine.dll,0F 8E ?? 01 00 00 8B 45 ?? 8B 48 ?? 85 C9 74) // should be unique
+INJECTdf:
+  db 0F 85
+registersymbol(INJECTdf)
+]=])
+else
+autoAssemble([=[{$asm}
+INJECTdf:
+  db 0F 8E
+unregistersymbol(INJECTdf)
+dealloc(INJECTdf)
+]=])
+end
+end
+
+function UDF2_CECheckbox35Click(sender)
+if UDF2_CECheckbox35.Checked == true then
+autoAssemble([=[{$asm}
+[ENABLE]
+aobscanmodule(INJECTaspeedblcok,libSandboxEngine.dll,66 0F 6E 8B 88 03 00 00)
+alloc(newmema,$1000)
+label(codea)
+label(returna)
+newmema:
+codea:
+  mov [ebx+00000388],9999999
+  jmp returna
+INJECTaspeedblcok:
+  jmp newmema
+  nop 3
+returna:
+registersymbol(INJECTaspeedblcok)
+aobscanmodule(INJECTnopspeedblock,libSandboxEngine.dll,C7 86 88 03 00 00 00 00 00 00 89)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+ nop
+  jmp return
+INJECTnopspeedblock:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJECTnopspeedblock)
+]=])
+else
+autoAssemble([=[{$asm}
+INJECTnopspeedblock:
+  db C7 86 88 03 00 00 00 00 00 00
+unregistersymbol(INJECTnopspeedblock)
+dealloc(newmem)
+INJECTaspeedblcok:
+  db 66 0F 6E 8B 88 03 00 00
+unregistersymbol(INJECTaspeedblcok)
+dealloc(newmema)
+]=])
+end
+end
+
+function UDF2_CECheckbox36Click(sender)
+if UDF2_CECheckbox36.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(INbrokeblock,libSandboxEngine.dll,89 86 8C 03 00 00 8B 45) // should be unique
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+  mov eax,#0
+code:
+  mov [esi+0000038C],eax
+  jmp return
+INbrokeblock:
+  jmp newmem
+  nop
+return:
+registersymbol(INbrokeblock)
+]=])
+else
+autoAssemble([=[{$asm}
+INbrokeblock:
+  db 89 86 8C 03 00 00
+unregistersymbol(INbrokeblock)
+dealloc(newmem)
+]=])
+end
+end
+function UDF2_CECheckbox37Click(sender)
+if UDF2_CECheckbox37.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(INJECTrideonair,libSandboxEngine.dll,88 83 A4 00 00 00 8B 44 24 10 80) // should be unique
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+  mov [ebx+000000A4],01
+  jmp return
+INJECTrideonair:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECTrideonair)
+]=])
+else
+autoAssemble([=[{$asm}
+INJECTrideonair:
+  db 88 83 A4 00 00 00
+unregistersymbol(INJECTrideonair)
+dealloc(newmem)
+]=])
+end
+end
+
+function UDF2_CECheckbox38Click(sender)
+if UDF2_CECheckbox38.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(fasteatall,libSandboxEngine.dll,2B CA 80 ?? ?? 00 00 00 0074 ?? 05 ?? ?? 00 00)
+fasteatall:
+db 90 90
+registersymbol(fasteatall)
+]=])
+else
+autoAssemble([=[{$asm}
+fasteatall:
+db 2B CA
+unregistersymbol(fasteatall)
+dealloc(fasteatall)
+]=])
+end
+end
+
+function UDF2_CECheckbox39Click(sender)
+if UDF2_CECheckbox39.Checked == true then
+autoAssemble([=[{$asm}
+
+]=])
+else
+autoAssemble([=[{$asm}
+
+]=])
+end
+end
+
+function UDF2_CECheckbox40Click(sender)
+if UDF2_CECheckbox40.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(qnocd,libSandboxEngine.dll,76 ?? E8 ?? ?? ?? ?? 56 8B CF E8 ?? ?? ?? ?? 6A)
+qnocd:
+db 77
+registersymbol(qnocd)
+]=])
+else
+autoAssemble([=[{$asm}
+qnocd:
+db 76
+unregistersymbol(qnocd)
+]=])
+end
+end
+
+function UDF2_CECheckbox41Click(sender)
+if UDF2_CECheckbox41.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(INwqJECT,libSandboxEngine.dll,C6 83 01 02 00 00 01)
+INwqJECT:
+db C6 83 01 02 00 00 00
+registersymbol(INwqJECT)
+aobscanmodule(INJECTnoclip,libSandboxEngine.dll,74 ?? 33 C9 8B ?? 38 ?? ?? ?? 00 00 0F 94 C1) // should be unique
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+push ecx
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+mov ecx,[ecx+270]//人物
+cmp ebx,ecx
+pop ecx
+  jne libSandboxEngine.ActorLocoMotion::doMoveStep+287
+  xor ecx,ecx
+  mov edx,[ebx]
+  jmp return
+INJECTnoclip:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECTnoclip)
+]=])
+else
+autoAssemble([=[{$asm}
+INJECTnoclip:
+  db 74 56 33 C9 8B 13
+unregistersymbol(INJECTnoclip)
+dealloc(newmem)
+INwqJECT:
+db C6 83 01 02 00 00 01
+unregistersymbol(INwqJECT)
+]=])
+end
+end
+
+function UDF2_CECheckbox42Click(sender)
+if UDF2_CECheckbox42.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(infhgzua,libSandboxEngine.dll,89 BE ?? ?? ?? ?? 89 9E ?? ?? ?? ?? FF 90)
+registersymbol(infhgzua)
+infhgzua:
+db 90 90 90 90 90 90 90 90 90 90 90 90
+
+]=])
+else
+autoAssemble([=[{$asm}
+infhgzua:
+mov [esi+6F8],edi
+mov [esi+6Fc],ebx
+unregistersymbol(infhgzua)
+]=])
+end
+end
+
+function UDF2_CECheckbox43Click(sender)
+if UDF2_CECheckbox43.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(asnsn,libSandboxEngine.dll,74 ?? 6A ?? EB ?? 6A ?? E8 ?? ?? ?? ?? 8B 8F) // should be unique
+registersymbol(asnsn)
+asnsn:
+db EB
+]=])
+else
+autoAssemble([=[{$asm}
+asnsn:
+db 74
+unregistersymbol(asnsn)
+]=])
+end
+end
+
+function UDF2_CECheckbox44Click(sender)
+if UDF2_CECheckbox44.Checked == true then
+if Freezehightfly then Freezehightfly.destroy(); Freezehightfly = nil end
+Freezehightfly = createTimer(getMainForm())
+Freezehightfly.interval = 100
+Freezehightfly.OnTimer = function()
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+270]+134",100)
+end
+else
+if Freezehightfly then Freezehightfly.destroy(); Freezehightfly = nil end
+end
+end
+
+function UDF2_CECheckbox45Click(sender)
+if UDF2_CECheckbox45.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(asnssn,libSandboxEngine.dll,74 ?? C7 87 ?? ?? ?? ?? ?? ?? ?? ?? F3) // should be unique
+registersymbol(asnssn)
+asnssn:
+db 90 90
+]=])
+else
+autoAssemble([=[{$asm}
+asnssn:
+db 74 0A
+unregistersymbol(asnssn)
+]=])
+end
+end
+
+function UDF2_CECheckbox47Click(sender)
+if UDF2_CECheckbox47.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(INJECTaddhp,libSandboxEngine.dll,0F 85 F6 03 00 00 83)
+INJECTaddhp:
+db 90 90 90 90 90 90
+registersymbol(INJECTaddhp)
+]=])
+else
+autoAssemble([=[{$asm}
+INJECTaddhp:
+db 0F 85 F6 03 00 00
+unregistersymbol(INJECTaddhp)
+]=])
+end
+end
+
+function UDF2_CECheckbox46Click(sender)
+if UDF2_CECheckbox46.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(gamemodeTool,libSandboxEngine.dll,83 B9 6C 02 00 00 00)
+alloc(newmem,$1000)
+label(code)
+label(return)
+alloc(toolmode,8)
+registersymbol(toolmode)
+newmem:
+code:
+cmp dword ptr [ecx+0000026C],00
+push edi
+lea edi,[ecx+0000026C]
+mov [toolmode],edi
+pop edi
+jmp return
+gamemodeTool:
+  jmp newmem
+  nop 2
+return:
+registersymbol(gamemodeTool)
+]=])
+sleep(50)
+writeInteger("[toolmode]+0",1)
+else
+writeInteger("[toolmode]+0",0)
+sleep(50)
+autoAssemble([=[{$asm}
+gamemodeTool:
+  db 83 B9 6C 02 00 00 00
+unregistersymbol(gamemodeTool)
+dealloc(newmem)
+unregistersymbol(toolmode)
+dealloc(toolmode)
+]=])
+end
+end
+
+function UDF2_CECheckbox48Click(sender)
+if UDF2_CECheckbox48.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(gamemodehome,libSandboxEngine.dll,83 B8 90 01 00 00 01 75 1F)
+alloc(newmem,$1000)
+label(code)
+label(return)
+alloc(homemode,8)
+registersymbol(homemode)
+newmem:
+code:
+cmp dword ptr [eax+00000190],01
+push edi
+lea edi,[eax+00000190]
+mov [homemode],edi
+pop edi
+jmp return
+gamemodehome:
+  jmp newmem
+  nop 2
+return:
+registersymbol(gamemodehome)
+]=])
+sleep(50)
+writeInteger("[homemode]+0",1)
+else
+writeInteger("[homemode]+0",0)
+sleep(50)
+autoAssemble([=[{$asm}
+gamemodehome:
+  db 83 B8 90 01 00 00 01
+unregistersymbol(gamemodehome)
+dealloc(newmem)
+unregistersymbol(homemode)
+dealloc(homemode)
+]=])
+end
+end
+
+function UDF2_CECheckbox49Click(sender)
+if UDF2_CECheckbox49.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(gamemodeghost,libSandboxEngine.dll,83 BF 84 06 00 00 00 0F 84 AA) // should be unique
+alloc(newmem,$1000)
+label(code)
+label(return)
+alloc(ghostmode,8)
+registersymbol(ghostmode)
+newmem:
+code:
+cmp dword ptr [edi+00000684],00
+push edi
+lea edi,[edi+00000684]
+mov [ghostmode],edi
+pop edi
+jmp return
+gamemodeghost:
+  jmp newmem
+  nop 2
+return:
+registersymbol(gamemodeghost)
+]=])
+sleep(50)
+writeInteger("[ghostmode]+0",2)
+else
+writeInteger("[ghostmode]+0",0)
+sleep(50)
+autoAssemble([=[{$asm}
+gamemodeghost:
+  db 83 BF 84 06 00 00 00
+unregistersymbol(gamemodeghost)
+dealloc(newmem)
+unregistersymbol(ghostmode)
+dealloc(ghostmode)
+]=])
+end
+end
+
