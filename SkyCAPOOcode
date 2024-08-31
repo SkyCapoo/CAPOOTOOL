@@ -1293,6 +1293,333 @@ end
 
 --------------------------------------------------特殊功能--------------------------------------------
 
+function UDF2_CECheckbox90Click(sender)
+if UDF2_CECheckbox90.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(bulletjizon,libSandboxEngine.dll,76 ?? F3 0F 5C C1 F3 0F 59 41) // should be unique
+bulletjizon:
+db 77
+registersymbol(bulletjizon)
+]=])
+else
+autoAssemble([=[{$asm}
+bulletjizon:
+db 76
+unregistersymbol(bulletjizon)
+]=])
+end
+end
 
+function UDF2_CECheckbox91Click(sender)
+if UDF2_CECheckbox91.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(xxhzli,libSandboxEngine.dll,75 ?? 8B 88 ?? ?? ?? ?? F3) // should be unique
+registersymbol(xxhzli)
+xxhzli:
+db 7D
+]=])
+else
+autoAssemble([=[{$asm}
+xxhzli:
+db 75
+unregistersymbol(xxhzli)
+]=])
+end
+end
+function UDF2_CECheckbox92Click(sender)
+if UDF2_CECheckbox92.Checked == true then
+autoAssemble([=[{$asm}
+libSandboxEngine.GunLogical::getBulletNum+4:
+DB 74 01
+]=])
+else
+autoAssemble([=[{$asm}
+libSandboxEngine.GunLogical::getBulletNum+4:
+DB 75 01
+]=])
+end
+end
+
+function UDF2_CECheckbox93Click(sender)
+if UDF2_CECheckbox93.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(fastchangebbullet,libSandboxEngine.dll,F3 0F 10 40 70 83)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+  nop
+  jmp return
+fastchangebbullet:
+  jmp newmem
+return:
+registersymbol(fastchangebbullet)
+]=])
+else
+autoAssemble([=[{$asm}
+fastchangebbullet:
+  db F3 0F 10 40 70
+unregistersymbol(fastchangebbullet)
+dealloc(newmem)
+]=])
+end
+end
+function UDF2_CECheckbox94Click(sender)
+if UDF2_CECheckbox94.Checked == true then
+autoAssemble([=[{$asm}
+libSandboxEngine.PCControl::renderUI+476:
+db 90 90 90 90 90 90
+libSandboxEngine.GunLogical::update+2F:
+db 77
+libSandboxEngine.GunLogical::update+42:
+db 46
+libSandboxEngine.GunLogical::fireOnce+107:
+DB 77
+]=])
+else
+autoAssemble([=[{$asm}
+libSandboxEngine.PCControl::renderUI+476:
+db 0F 85 53 02 00 00
+libSandboxEngine.GunLogical::update+2F:
+db 76
+libSandboxEngine.GunLogical::update+42:
+db 56
+libSandboxEngine.GunLogical::fireOnce+107:
+DB 76
+]=])
+end
+end
+
+function UDF2_CEButton21Click(sender)
+writeInteger("[[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0]+46",getProperty(UDF2_CEEdit18,"text"))
+end
+
+function UDF2_CEButton22Click(sender)
+writeInteger("[[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0]+46",100)
+end
+
+function UDF2_RadioButton2Click(sender)
+writeInteger("[[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0]+84",0)
+end
+
+function UDF2_RadioButton3Click(sender)
+writeInteger("[[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0]+84",1)
+end
+
+function UDF2_RadioButton4Click(sender)
+writeInteger("[[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0]+84",2)
+end
+
+function UDF2_CECheckbox95Click(sender)
+if UDF2_CECheckbox95.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(buttennofall,libSandboxEngine.dll,FF 4F ?? 8B CF E8 ?? ?? ?? ?? 50 FF)
+registersymbol(buttennofall)
+buttennofall:
+db 90 90 90
+]=])
+else
+autoAssemble([=[{$asm}
+buttennofall:
+db FF 4F 0C
+unregistersymbol(buttennofall)
+]=])
+end
+end
+
+function UDF2_CECheckbox96Click(sender)
+if UDF2_CECheckbox96.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(bulletaddmore,libSandboxEngine.dll,FF 4F 0C 8B CF)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+  inc [edi+0C]
+  mov ecx,edi
+  jmp return
+bulletaddmore:
+  jmp newmem
+return:
+registersymbol(bulletaddmore)
+]=])
+else
+autoAssemble([=[{$asm}
+bulletaddmore:
+  db FF 4F 0C 8B CF
+unregistersymbol(bulletaddmore)
+dealloc(newmem)
+]=])
+end
+end
+
+function UDF2_RadioButton6Click(sender)
+writeInteger("[[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0]+80",0)
+end
+
+function UDF2_RadioButton7Click(sender)
+writeInteger("[[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0]+80",1)
+end
+
+function UDF2_RadioButton8Click(sender)
+writeInteger("[[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0]+80",2)
+end
+
+function UDF2_CEButton23Click(sender)
+writeInteger("[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0C",getProperty(UDF2_CEEdit19,"text"))
+end
+
+function UDF2_CEButton24Click(sender)
+if not readInteger("bulletID") then
+autoAssemble([=[{$asm}
+aobscanmodule(changebutten,libSandboxEngine.dll,75 ?? 8B B0 ?? ?? ?? ?? 8B 49 ?? 56)
+registersymbol(changebutten)
+alloc(newmem,100)
+label(returnhere)
+alloc(bulletID,4)
+registersymbol(bulletID)
+bulletID:
+dd #15003
+newmem:
+mov esi,[bulletID]//子弹ID
+mov [eax+88],esi
+mov esi,[eax+88]
+jmp returnhere
+changebutten:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+]=])
+end
+sleep(50)
+writeInteger("bulletID",getProperty(UDF2_CEEdit20,"text"))
+end
+
+function UDF2_CEButton25Click(sender)
+writeInteger("bulletID",15003)
+writeInteger("[[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0]+88",15003)
+sleep(50)
+if readInteger("bulletID") then
+autoAssemble([=[{$asm}
+changebutten:
+db 75 06
+mov esi,[eax+88]
+dealloc(newmem)
+unregistersymbol(changebutten)
+dealloc(bulletID,4)
+unregistersymbol(bulletID)
+]=])
+end
+end
+
+function UDF2_RadioButton10Click(sender)
+writeInteger("[libiworld.MINIW::HotfixPkgLoader::HOTFIX_DOWNLOAD_CACHE_PATH+20C8]+838",0)
+end
+
+function UDF2_RadioButton11Click(sender)
+writeInteger("[libiworld.MINIW::HotfixPkgLoader::HOTFIX_DOWNLOAD_CACHE_PATH+20C8]+838",3)
+end
+
+function UDF2_RadioButton12Click(sender)
+writeInteger("[libiworld.MINIW::HotfixPkgLoader::HOTFIX_DOWNLOAD_CACHE_PATH+20C8]+838",2)
+end
+
+function UDF2_CECheckbox97Click(sender)
+if UDF2_CECheckbox97.Checked == true then
+backspeedmove =readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+CC")
+if Freezespeedmove then Freezespeedmove.destroy(); Freezespeedmove = nil end
+Freezespeedmove = createTimer(getMainForm())
+Freezespeedmove.interval = 100
+Freezespeedmove.OnTimer = function()
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+CC",getProperty(UDF2_CEEdit21,"text"))
+end
+else
+if Freezespeedmove then Freezespeedmove.destroy(); Freezespeedmove = nil end
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+CC",backspeedmove)
+end
+end
+
+function UDF2_CECheckbox98Click(sender)
+if UDF2_CECheckbox98.Checked == true then
+backspeedrun =readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+D0")
+if Freezespeedrun then Freezespeedrun.destroy(); Freezespeedrun = nil end
+Freezespeedrun = createTimer(getMainForm())
+Freezespeedrun.interval = 100
+Freezespeedrun.OnTimer = function()
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+D0",getProperty(UDF2_CEEdit22,"text"))
+end
+else
+if Freezespeedrun then Freezespeedrun.destroy(); Freezespeedrun = nil end
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+D0",backspeedrun)
+end
+end
+
+function UDF2_CECheckbox99Click(sender)
+if UDF2_CECheckbox99.Checked == true then
+backspeedsit =readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+D4")
+if Freezespeedsit then Freezespeedsit.destroy(); Freezespeedsit = nil end
+Freezespeedsit = createTimer(getMainForm())
+Freezespeedsit.interval = 100
+Freezespeedsit.OnTimer = function()
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+D4",getProperty(UDF2_CEEdit23,"text"))
+end
+else
+if Freezespeedsit then Freezespeedsit.destroy(); Freezespeedsit = nil end
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+D4",backspeedsit)
+end
+end
+
+function UDF2_CECheckbox100Click(sender)
+if UDF2_CECheckbox100.Checked == true then
+backspeedswim =readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+D8")
+if Freezespeedswim then Freezespeedswim.destroy(); Freezespeedswim = nil end
+Freezespeedswim = createTimer(getMainForm())
+Freezespeedswim.interval = 100
+Freezespeedswim.OnTimer = function()
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+D8",getProperty(UDF2_CEEdit24,"text"))
+end
+else
+if Freezespeedswim then Freezespeedswim.destroy(); Freezespeedswim = nil end
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+D8",backspeedswim)
+end
+end
+
+function UDF2_CECheckbox101Click(sender)
+if UDF2_CECheckbox101.Checked == true then
+backhightjump =readFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+DC")
+if Freezehightjump then Freezehightjump.destroy(); Freezehightjump = nil end
+Freezehightjump = createTimer(getMainForm())
+Freezehightjump.interval = 100
+Freezehightjump.OnTimer = function()
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+DC",getProperty(UDF2_CEEdit25,"text"))
+end
+else
+if Freezehightjump then Freezehightjump.destroy(); Freezehightjump = nil end
+writeFloat("[[libSandboxEngine.g_pPlayerCtrl]+280]+DC",backhightjump)
+end
+end
+
+function UDF2_CEButton26Click(sender)
+backSkinID =readInteger("[[libiworld.g_nHomeGardenSaveVersion+424]+C]+64")
+if FreezeSkinID then FreezeSkinID.destroy(); FreezeSkinID = nil end
+FreezeSkinID = createTimer(getMainForm())
+FreezeSkinID.interval = 100
+FreezeSkinID.OnTimer = function()
+writeInteger("[[libiworld.g_nHomeGardenSaveVersion+424]+C]+64",getProperty(UDF2_CEEdit26,"text"))
+end
+end
+
+
+
+function UDF2_CEButton27Click(sender)
+if FreezeSkinID then FreezeSkinID.destroy(); FreezeSkinID = nil end
+writeInteger("[[libiworld.g_nHomeGardenSaveVersion+424]+C]+64",backSkinID)
+end
+
+--------------------------------------------------添加功能--------------------------------------------
 
 
