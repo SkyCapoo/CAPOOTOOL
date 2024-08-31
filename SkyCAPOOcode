@@ -902,7 +902,6 @@ end
 function UDF2_CECheckbox35Click(sender)
 if UDF2_CECheckbox35.Checked == true then
 autoAssemble([=[{$asm}
-[ENABLE]
 aobscanmodule(INJECTaspeedblcok,libSandboxEngine.dll,66 0F 6E 8B 88 03 00 00)
 alloc(newmema,$1000)
 label(codea)
