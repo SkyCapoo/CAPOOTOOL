@@ -113,6 +113,22 @@ UDF3_CELabel3.Caption = "版本號 : v" .. Max_version
 end
 ---------------------------------------------------------------界面功能---------------------------------------------------------------
 
+function UDF1_CEButton2Click(sender) --確定按鈕
+if Current_version < Max_version then
+UDF1.hide()
+sleep(300)
+CETrainer.show()
+else
+closeCE()
+end
+end
+
+
+function UDF1_CEButton1Click(sender)
+shellExecute("https://wwog.lanzouk.com/b00uyecn8d") --下載新版本
+end
+
+
 function CETrainer_CECustomButton2Click(sender)
 if CETrainer_CECheckbox1.Checked == true then
 
