@@ -109,7 +109,7 @@ if Current_version < Max_version then
 CETrainer.hide()
 sleep(1000)
 UDF3.show()
-UDF3_CELabe3.Caption = "版本號 : v" .. Max_version
+UDF3_CELabel3.Caption = "版本號 : v" .. Max_version
 end
 ---------------------------------------------------------------界面功能---------------------------------------------------------------
 
