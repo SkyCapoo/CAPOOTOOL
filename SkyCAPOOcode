@@ -1263,3 +1263,36 @@ dealloc(ghostmode)
 end
 end
 
+function UDF2_CEButton14Click(sender)
+writeInteger("[libSandboxEngine.g_WorldMgr]+88",0)
+end
+
+function UDF2_CEButton15Click(sender)
+writeInteger("[libSandboxEngine.g_WorldMgr]+88",1)
+end
+
+function UDF2_CEButton16Click(sender)
+writeInteger("[libSandboxEngine.g_WorldMgr]+88",2)
+end
+
+function UDF2_CEButton17Click(sender)
+writeInteger("[libSandboxEngine.g_WorldMgr]+88",3)
+end
+
+function UDF2_CEButton18Click(sender)
+writeInteger("[libSandboxEngine.g_WorldMgr]+88",4)
+end
+
+function UDF2_CEButton19Click(sender)
+writeInteger("[libSandboxEngine.g_WorldMgr]+88",5)
+end
+
+function UDF2_CEButton20Click(sender)
+writeInteger("[libSandboxEngine.g_WorldMgr]+88",6)
+end
+
+--------------------------------------------------特殊功能--------------------------------------------
+
+
+
+
