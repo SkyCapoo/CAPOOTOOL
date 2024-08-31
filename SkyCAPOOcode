@@ -1521,6 +1521,7 @@ returnhere:
 end
 sleep(50)
 writeInteger("bulletID",getProperty(UDF2_CEEdit20,"text"))
+writeInteger("[[[libSandboxEngine.g_pPlayerCtrl]+5B8]+0]+88",getProperty(UDF2_CEEdit20,"text"))
 end
 
 function UDF2_CEButton25Click(sender)
