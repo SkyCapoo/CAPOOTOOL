@@ -126,7 +126,7 @@ UDF2_CELabel1.Caption = "UID:  " .. myuid - 1000000000
 if hostuid then
 UDF2_CELabel2.Caption = "房主UID:  " .. hostuid - 1000000000
 end
-UDF2_CELabel3.Caption = "Ping:  " .. pingg
+UDF2_CELabel3.Caption = "Ping:  " .. toSigned32(pingg)
 UDF2_CELabel4.Caption = "FPS:  " .. fps
 else
 showMessage("請先閲讀[用戶使用協議]")
@@ -144,7 +144,7 @@ UDF2_CELabel1.Caption = "UID:  " .. myuid - 1000000000
 if hostuid then
 UDF2_CELabel2.Caption = "房主UID:  " .. hostuid - 1000000000
 end
-UDF2_CELabel3.Caption = "Ping:  " .. pingg
+UDF2_CELabel3.Caption = "Ping:  " .. toSigned32(pingg)
 UDF2_CELabel4.Caption = "FPS:  " .. fps
 end
 
