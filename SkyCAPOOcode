@@ -122,10 +122,10 @@ pingg = readInteger("libSandboxEngine.RoomSyncResMgr::s_pInstance+32C")
 fpss = readFloat("[libMiniBaseEngine.dll+91f120]+2C")
 fps = string.format("%.1f", fpss)
 UDF2_CEMemo1.Lines.Text = announcement
-UDF2_CELabel1.Caption = "UID:  " .. myuid
+UDF2_CELabel1.Caption = "UID:  " .. myuid - 1000000000
 if hostuid then
-UDF2_CELabel2.Caption = "房主UID:  " .. hostuid
-return end
+UDF2_CELabel2.Caption = "房主UID:  " .. hostuid - 1000000000
+end
 UDF2_CELabel3.Caption = "Ping:  " .. pingg
 UDF2_CELabel4.Caption = "FPS:  " .. fps
 else
@@ -140,10 +140,10 @@ pingg = readInteger("libSandboxEngine.RoomSyncResMgr::s_pInstance+32C")
 fpss = readFloat("[libMiniBaseEngine.dll+91f120]+2C")
 fps = string.format("%.1f", fpss)
 UDF2_CEMemo1.Lines.Text = announcement
-UDF2_CELabel1.Caption = "UID:  " .. myuid
+UDF2_CELabel1.Caption = "UID:  " .. myuid - 1000000000
 if hostuid then
-UDF2_CELabel2.Caption = "房主UID:  " .. hostuid
-return end
+UDF2_CELabel2.Caption = "房主UID:  " .. hostuid - 1000000000
+end
 UDF2_CELabel3.Caption = "Ping:  " .. pingg
 UDF2_CELabel4.Caption = "FPS:  " .. fps
 end
