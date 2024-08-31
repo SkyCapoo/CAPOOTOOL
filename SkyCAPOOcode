@@ -1623,3 +1623,53 @@ end
 --------------------------------------------------添加功能--------------------------------------------
 
 
+function UDF2_CEButton28Click(sender)
+autoAssemble([=[{$asm}
+alloc(fztjID,4)
+registersymbol(fztjID)
+alloc(fztjSL,4)
+registersymbol(fztjSL)
+alloc(fztjNJ,4)
+registersymbol(fztjNJ)
+]=])
+sleep(50)
+writeInteger("fztjID",getProperty(UDF2_CEEdit27,"text"))
+writeInteger("fztjSL",getProperty(UDF2_CEEdit28,"text"))
+writeInteger("fztjNJ",getProperty(UDF2_CEEdit29,"text"))
+sleep(10)
+autoAssemble([=[{$asm}
+alloc(SkyCapoo,512)
+createthread(SkyCapoo)
+SkyCapoo:
+pushad
+push 0
+push 0
+push 0
+push 1
+push 0
+push -1
+push [fztjNJ]
+push [fztjSL]
+push [fztjID]
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+mov ecx,[ecx+56c]
+mov ecx,[ecx+240]
+mov ecx,[ecx+8]
+mov ecx,[ecx+50]
+mov eax,libSandboxEngine.BackPackGrid::setItem
+call eax
+popad
+retn
+]=])
+autoAssemble([=[{$asm}
+dealloc(fztjID)
+unregistersymbol(fztjID)
+dealloc(fztjSL)
+unregistersymbol(fztjSL)
+dealloc(fztjNJ)
+unregistersymbol(fztjNJ)
+]=])
+end
+
+
+------------------------------------end------------------------------------
