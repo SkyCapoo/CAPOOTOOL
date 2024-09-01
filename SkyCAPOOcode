@@ -121,6 +121,7 @@ return caFree
 else
 return caHide
 end
+end
 
 function UDF2_FormClose(sender)
 closeCE()
