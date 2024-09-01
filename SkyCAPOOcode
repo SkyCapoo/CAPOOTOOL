@@ -113,13 +113,33 @@ UDF3_CELabel3.Caption = "版本號 : v" .. Max_version
 end
 ---------------------------------------------------------------界面功能---------------------------------------------------------------
 
+ --Possible options: caHide, caFree, caMinimize, caNone
+function UDF1_FormClose(sender)
+if Current_version < Max_version then
+closeCE()
+return caFree
+else
+return caHide
+end
+
+function UDF2_FormClose(sender)
+closeCE()
+return caFree
+end
+
+function UDF3_FormClose(sender)
+closeCE()
+return caFree
+end
+
 function UDF1_CEButton2Click(sender) --確定按鈕
 if Current_version < Max_version then
+closeCE()
+return caFree
+else
 UDF1.hide()
 sleep(300)
 CETrainer.show()
-else
-closeCE()
 end
 end
 
