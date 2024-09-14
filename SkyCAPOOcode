@@ -665,6 +665,138 @@ unregistersymbol(gotoZ)
 ]=])
 end
 
+function UDF2_CECheckbox50Click(sender)
+if UDF2_CECheckbox50.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(hostfuckplayer,libSandboxEngine.dll,89 96 DC 00 00 00)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+mov edx,[[[libSandboxEngine.g_pPlayerCtrl]+270]+DC]
+mov [esi+000000DC],edx
+mov edi,[[[libSandboxEngine.g_pPlayerCtrl]+270]+E0]
+mov [esi+000000E0],edi
+mov ebx,[[[libSandboxEngine.g_pPlayerCtrl]+270]+E4]
+mov [esi+000000E4],ebx
+  jmp return
+hostfuckplayer:
+  jmp newmem
+  nop
+return:
+registersymbol(hostfuckplayer)]=])
+else
+autoAssemble([=[{$asm}
+hostfuckplayer:
+  db 89 96 DC 00 00 00
+unregistersymbol(hostfuckplayer)
+dealloc(newmem)]=])
+end
+end
+
+function UDF2_CECheckbox51Click(sender)
+if UDF2_CECheckbox51.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(qtizondu,libSandboxEngine.dll,74 2? 8B ?F ?4 0? 00 00 E8 ?? ?? ?? ?? 85 C0)
+registersymbol(qtizondu)
+qtizondu:
+ db 75]=])
+else
+autoAssemble([=[{$asm}
+qtizondu:
+  db 74
+unregistersymbol(qtizondu)
+dealloc(newmem)]=])
+end
+end
+
+function UDF2_CECheckbox52Click(sender)
+if UDF2_CECheckbox52.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(fireallandswimonair,libSandboxEngine.dll,66 C7 80 A6 00 00 00 00 00)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+  mov word ptr [eax+000000A6],0001
+  jmp return
+fireallandswimonair:
+  jmp newmem
+  nop 4
+return:
+registersymbol(fireallandswimonair)]=])
+else
+autoAssemble([=[{$asm}
+fireallandswimonair:
+  db 66 C7 80 A6 00 00 00 00 00
+unregistersymbol(fireallandswimonair)
+dealloc(newmem)]=])
+end
+end
+
+function UDF2_CECheckbox53Click(sender)
+if UDF2_CECheckbox53.Checked == true then
+autoAssemble([=[{$asm}
+alloc(capoo,100)
+createthread(capoo)
+capoo:
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+cmp ecx,0
+je Fun
+pushad
+push capoo
+push #97
+push #3
+mov ecx,[libSandboxEngine.AttackJsonManager::Default_General_Swimming+1450]
+call libSandboxEngine.World::setGameRule
+popad
+retn
+Fun:
+retn
+]=])
+autoAssemble([=[{$asm}
+aobscanmodule(superlightning,libSandboxEngine.dll,8A 46 08 FF 4E 0C F3 0F 10 56 18)
+superlightning:
+DB 90 90 90
+aobscanmodule(superlightning2,libSandboxEngine.dll,7B ?? 0F 2E C3 9F F6 C4)
+superlightning2:
+DB 7A]=])
+else
+autoAssemble([=[{$asm}
+aobscanmodule(superlightning,libSandboxEngine.dll,90 90 90 FF 4E 0C F3 0F 10 56 18)
+aobscanmodule(superlightning2,libSandboxEngine.dll,7A ?? 0F 2E C3 9F F6 C4)
+superlightning:
+DB 8A 46 08 FF 4E 0C
+superlightning2:
+DB 7B
+unregistersymbol(superlightning)
+dealloc(newmem)
+unregistersymbol(superlightning2)
+dealloc(newmem2)
+ ]=])
+autoAssemble([=[{$asm}
+alloc(capoo,100)
+createthread(capoo)
+capoo:
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+cmp ecx,0
+je Fun
+pushad
+push capoo
+push #10
+push #3
+mov ecx,[libSandboxEngine.AttackJsonManager::Default_General_Swimming+1450]
+call libSandboxEngine.World::setGameRule
+popad
+retn
+Fun:
+retn
+]=])
+end
+end
+
 ----------------------------------------------------時間天數-----------------------------------------
 
 function UDF2_CEButton12Click(sender)
@@ -1334,6 +1466,128 @@ end
 
 function UDF2_CEButton20Click(sender)
 writeInteger("[libSandboxEngine.g_WorldMgr]+88",6)
+end
+
+
+
+function UDF2_CECheckbox61Click(sender)
+if UDF2_CECheckbox61.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(reachINJECT,libSandboxEngine.dll,75 ?? E8 ?? ?? ?? ?? 8B 40 ?? 6B)
+alloc(newmem,$1000)
+label(code)
+label(return)
+reachINJECT:
+db 90 90
+globalalloc(Reach,8)
+label(code)
+label(return)
+Reach:
+dd #12
+newmem:
+code:
+  mov eax,[Reach]
+  imul eax,eax,64
+  jmp return
+reachINJECT+7:
+  jmp code
+  nop
+  nop
+return:
+registersymbol(reachINJECT)]=])
+else
+autoAssemble([=[{$asm}
+reachINJECT+7:
+  db 8B 40 4C 6B 40 68 64
+unregistersymbol(reachINJECT)
+dealloc(newmem)
+reachINJECT:
+db 75 1A
+unregistersymbol(Reach)
+dealloc(Reach)]=])
+end
+end
+local theviewrech = 1
+function UDF2_CECheckbox62Click(sender)
+if UDF2_CECheckbox62.Checked == true then
+  theviewrech = inputQuery("上帝視角距離", "輸入1正常距離，建議範圍1-10", theviewrech)
+  if theviewrech == nil or theviewrech == "" then
+    messageDialog("你取消了功能", mtError)
+    return
+  end
+autoAssemble([=[{$asm}
+aobscanmodule(godmodeview,libSandboxEngine.dll,F3 0F 59 97 B4 00 00 00 74)
+alloc(newmem,$1000)
+label(code)
+label(return)
+globalalloc(viewreach,8)
+viewreach:
+dd (Float)1.200000048
+newmem:
+code:
+  mulss xmm2,[viewreach]
+  jmp return
+godmodeview:
+  jmp newmem
+  nop 3
+return:
+registersymbol(godmodeview)]=])
+writeFloat("viewreach",theviewrech)
+else
+writeFloat("viewreach",1.200000048)
+sleep(10)
+autoAssemble([=[{$asm}
+godmodeview:
+  db F3 0F 59 97 B4 00 00 00
+unregistersymbol(godmodeview)
+dealloc(newmem)
+dealloc(viewreach)]=])
+end
+end
+
+function UDF2_CECheckbox63Click(sender)
+if UDF2_CECheckbox63.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(INJECTbalcokfloor,libSandboxEngine.dll,75 35 8B 86 3C 02 00 00)
+INJECTbalcokfloor:
+db 74
+registersymbol(INJECTbalcokfloor)]=])
+else
+autoAssemble([=[{$asm}
+INJECTbalcokfloor:
+  db 75
+unregistersymbol(INJECTbalcokfloor)]=])
+end
+end
+
+function UDF2_CECheckbox64Click(sender)
+if UDF2_CECheckbox64.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(swimfly,libSandboxEngine.dll,0F 84 88 00 00 00 F3 0F 10 45)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+code:
+push ecx
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+mov ecx,[ecx+270]
+cmp ebx,ecx
+pop ecx
+  jne libSandboxEngine.ActorLocoMotion::handleWaterMovement+132
+  jmp return
+swimfly:
+  jmp newmem
+  nop
+return:
+registersymbol(swimfly)]=])
+else
+autoAssemble([=[{$asm}
+swimfly:
+  db 0F 84 88 00 00 00
+unregistersymbol(swimfly)
+dealloc(newmem)]=])
+end
 end
 
 --------------------------------------------------特殊功能--------------------------------------------
