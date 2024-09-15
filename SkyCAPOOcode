@@ -3,7 +3,12 @@ announcement = [[1.0版本更新内容:
 更新了房主-聯機-特殊-添加等功能
 2024/8/31
 ]]
+sponsor = [[
+ 1.何安  --1000台幣
+ 2.恒 --1000台幣
+]]
 CETrainer_CEMemo1.Lines.Text = announcement--公告
+CETrainer_CEMemo2.Lines.Text = sponsor--贊助者
 -------------------------------------------------------------功能模塊----------------------------------------------------------------
 
 function toSigned32(value) --負數修正
