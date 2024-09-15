@@ -2278,8 +2278,8 @@ end
 
 
 function UDF2_CEButton32Click(sender)
-UDF2_CEButton32.Checked = false
-UDF2_CEButton33.Checked = true
+UDF2_CEButton32.Visible = false
+UDF2_CEButton33.Visible = true
 autoAssemble([=[{$asm}
 alloc(cwID,4)
 registersymbol(cwID)
@@ -2320,8 +2320,8 @@ returnhere:
 end
 
 function UDF2_CEButton33Click(sender)
-UDF2_CEButton32.Checked = true
-UDF2_CEButton33.Checked = false
+UDF2_CEButton32.Visible = true
+UDF2_CEButton33.Visible = false
 autoAssemble([=[{$asm}
 dealloc(newmem)
 capoopet:
