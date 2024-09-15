@@ -1976,5 +1976,158 @@ unregistersymbol(fztjNJ)
 ]=])
 end
 
+function UDF2_CEButton29Click(sender)
+UDF2_CEButton30.Visible=true
+UDF2_CEButton29.Visible=false
+autoAssemble([=[{$asm}
+{$lua}
+local aTimerInterval=100
+local function aTimer_tick(timer)
+if aTimer then
+writeDouble("[hexvatphamtrongkho1]+0",readDouble("vatphamidok"))
+writeDouble("[hexvatphamtrongkho2]+0",readDouble("vatphamidok"))
+end
+end
+if syntaxcheck then return end
+aTimer=createTimer(MainForm)
+aTimer.Interval=aTimerInterval
+aTimer.OnTimer=aTimer_tick
+{$asm}
+globalalloc(vatphamidok,8)
+aobscanmodule(itemhackvip,liblua.dll,8B 02 8B 4A 04 8B 55)
+alloc(newmem,$1000)
+globalalloc(hexvatphamtrongkho1,8)
+globalalloc(hexvatphamtrongkho2,8)
+globalalloc(soluongvatpham,8)
+globalalloc(chon1vatphambatkicotrongkho,8)
+label(code3)
+label(code2)
+label(code1)
+label(code)
+label(return)
+chon1vatphambatkicotrongkho:
+dd #1086935552
+soluongvatpham:
+dd #0
+hexvatphamtrongkho1:
+dd 0
+hexvatphamtrongkho2:
+dd 0
+vatphamidok:
+dq (Double)12005
+newmem:
+push esi
+cmp [hexvatphamtrongkho1],#0
+je code1
+cmp [hexvatphamtrongkho2],#0
+je code2
+code1:
+cmp [soluongvatpham],#0
+cmp [chon1vatphambatkicotrongkho],#0
+jng codeend
+cmp [hexvatphamtrongkho1],#0
+jne codeend
+mov esi,[soluongvatpham]
+cmp [edx+24],esi
+jne codeend
+mov esi,[chon1vatphambatkicotrongkho]
+cmp [edx+4],esi
+jne codeend
+mov [hexvatphamtrongkho1],edx
+mov esi,[edx+4]
+mov [chon1vatphambatkicotrongkho],esi
+jmp codeend
+code2:
+cmp [soluongvatpham],#0
+cmp [chon1vatphambatkicotrongkho],#0
+jng codeend
+cmp [hexvatphamtrongkho2],#0
+jne codeend
+mov esi,[soluongvatpham]
+cmp [edx+24],esi
+jne codeend
+mov esi,[hexvatphamtrongkho1]
+cmp esi,edx
+jg code3
+jnl codeend
+mov esi,[chon1vatphambatkicotrongkho]
+cmp [edx+4],esi
+jne codeend
+mov [hexvatphamtrongkho2],edx
+jmp codeend
+code3:
+cmp [soluongvatpham],#0
+cmp [chon1vatphambatkicotrongkho],#0
+jng codeend
+cmp [hexvatphamtrongkho2],#0
+jne codeend
+mov esi,[soluongvatpham]
+cmp [edx+24],esi
+jne codeend
+mov esi,[hexvatphamtrongkho1]
+cmp esi,edx
+jng codeend
+mov esi,[chon1vatphambatkicotrongkho]
+cmp [edx+4],esi
+jne codeend
+mov [hexvatphamtrongkho2],edx
+jmp codeend
+codeend:
+pop esi
+code:
+  mov eax,[edx]
+  mov ecx,[edx+04]
+  jmp return
+
+itemhackvip:
+  jmp newmem
+return:
+registersymbol(itemhackvip)
+aobscanmodule(unlock_ham_lay_all_vp,libSandboxEngine.dll,66 0F 6E 40 08 83)
+alloc(newmemdd,$1000)
+label(codecc)
+label(returnc)
+newmemdd:
+mov [eax+08],#2
+codecc:
+  movd xmm0,[eax+08]
+  jmp returnc
+unlock_ham_lay_all_vp:
+  jmp newmemdd
+returnc:
+registersymbol(unlock_ham_lay_all_vp)
+]=])
+writeDouble("chon1vatphambatkicotrongkho-4",getProperty(UDF2_CEEdit30,"text"))
+writeDouble("soluongvatpham-4",getProperty(UDF2_CEEdit31,"text"))
+writeDouble("vatphamidok",getProperty(UDF2_CEEdit32,"text"))
+end
+
+function UDF2_CEButton30Click(sender)
+UDF2_CEButton30.Visible=false
+UDF2_CEButton29.Visible=true
+writeDouble("vatphamidok",readDouble("chon1vatphambatkicotrongkho-4"))
+writeDouble("[hexvatphamtrongkho1]+0",readDouble("chon1vatphambatkicotrongkho-4"))
+writeDouble("[hexvatphamtrongkho2]+0",readDouble("chon1vatphambatkicotrongkho-4"))
+sleep(1)
+autoAssemble([=[{$asm}
+{$lua}
+if syntaxcheck then return end
+aTimer.destroy()
+writeDouble("vatphamidok",readDouble("chon1vatphambatkicotrongkho-4"))
+writeDouble("[hexvatphamtrongkho1]+0",readDouble("chon1vatphambatkicotrongkho-4"))
+writeDouble("[hexvatphamtrongkho2]+0",readDouble("chon1vatphambatkicotrongkho-4"))
+aTimer=nil
+{$asm}
+itemhackvip:
+  db 8B 02 8B 4A 04
+unlock_ham_lay_all_vp:
+  db 66 0F 6E 40 08
+unregistersymbol(itemhackvip)
+dealloc(newmem)
+unregistersymbol(unlock_ham_lay_all_vp)
+dealloc(newmemdd)
+]=])
+end
+
 
 ------------------------------------end------------------------------------
