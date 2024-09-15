@@ -2247,4 +2247,95 @@ dealloc(newmemdd)
 end
 
 
+function UDF2_CEButton31Click(sender)
+autoAssemble([=[{$asm}
+alloc(tjzqID,4)
+registersymbol(tjzqID)
+tjzqID:
+db 00
+]=])
+writeInteger("tjzqID",getProperty(UDF2_CEEdit33,"text"))
+sleep(20)
+autoAssemble([=[{$asm}
+alloc(Draw,512)
+createthread(Draw)
+Draw:
+pushad
+push [tjzqID]//坐骑ID
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+mov eax,libSandboxEngine.ClientPlayer::summonAccountHorse
+call eax
+popad
+retn
+]=])
+sleep(20)
+autoAssemble([=[{$asm}
+dealloc(tjzqID)
+unregistersymbol(tjzqID)
+]=])
+end
+
+
+function UDF2_CEButton32Click(sender)
+UDF2_CEButton32.Checked = false
+UDF2_CEButton33.Checked = true
+autoAssemble([=[{$asm}
+alloc(cwID,4)
+registersymbol(cwID)
+alloc(cwTX,4)
+registersymbol(cwTX)
+alloc(cwDJ,4)
+registersymbol(cwDJ)
+cwID:
+dd #10008
+cwTX:
+dd #5
+cwDJ:
+dd #3
+]=])
+writeInteger("cwID",getProperty(UDF2_CEEdit34,"text"))
+writeInteger("cwTX",getProperty(UDF2_CEEdit35,"text"))
+writeInteger("cwDJ",getProperty(UDF2_CEEdit36,"text"))
+sleep(20)
+autoAssemble([=[{$asm}
+aobscanmodule(capoopet,libSandboxEngine.dll,83 EC ?? 8D 45 ?? 8B CC 50 E8 ?? ?? ?? ?? F2 0F 2C 4D ?? 8B 07) // should be unique
+alloc(newmem,100)
+label(returnhere)
+newmem:
+mov eax,[cwID]
+mov [esp],eax
+mov eax,[cwTX]
+mov [esp+4],eax
+mov eax,[cwDJ]
+mov [esp+8],eax
+db 83 EC 18
+db 8D 45 C0
+jmp returnhere
+capoopet:
+jmp newmem
+nop
+returnhere:
+]=])
+end
+
+function UDF2_CEButton33Click(sender)
+UDF2_CEButton32.Checked = true
+UDF2_CEButton33.Checked = false
+autoAssemble([=[{$asm}
+dealloc(newmem)
+capoopet:
+db 83 EC 18
+db 8D 45 C0
+unregistersymbol(capoopet)
+]=])
+autoAssemble([=[{$asm}
+dealloc(cwID)
+unregistersymbol(cwID)
+dealloc(cwDJ)
+unregistersymbol(cwDJ)
+dealloc(cwTX)
+unregistersymbol(cwTX)
+]=])
+end
+
 ------------------------------------end------------------------------------
