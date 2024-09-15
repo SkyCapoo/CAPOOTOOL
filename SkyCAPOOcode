@@ -1599,6 +1599,118 @@ retn
 end
 end
 
+function UDF2_CECheckbox65Click(sender)
+if UDF2_CECheckbox65.Checked == true then
+autoAssemble([=[{$asm}
+alloc(newmem,100)
+label(returnhere)
+newmem:
+pushad
+movss xmm1,[esi+90]
+mov eax,[libSandboxEngine.g_pPlayerCtrl]
+mov eax,[eax+280]
+mov eax,[eax+90]
+cmp [esi+90],eax
+popad
+jne long End
+pushad
+movss xmm1,[esi+94]
+cmp [esi+94],0
+popad
+jnl Long End
+pushad
+push 0
+push -1
+push 0
+push 2
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+mov eax,libSandboxEngine.MpPlayerControl::revive
+call eax
+push 0
+push -1
+push 0
+push 0
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+mov eax,libSandboxEngine.MpPlayerControl::revive
+call eax
+popad
+End:
+jmp returnhere
+libSandboxEngine.PlayerAttrib::tick+22:
+jmp newmem
+nop
+nop
+nop
+returnhere:]=])
+else
+autoAssemble([=[{$asm}
+dealloc(newmem)
+libSandboxEngine.PlayerAttrib::tick+22:
+db F3 0F 10 8E 94 00 00 00]=])
+end
+end
+
+
+
+function UDF2_CECheckbox66Click(sender)
+if UDF2_CECheckbox66.Checked == true then
+autoAssemble([=[{$asm}
+aobscanmodule(qxianass,libSandboxEngine.dll,F7 47 14 00 10 00 00)
+alloc(newmem,$1000)
+label(code)
+label(return)
+newmem:
+  mov [edi+14],#8766
+code:
+  test [edi+14],00001000
+  jmp return
+qxianass:
+  jmp newmem
+  nop 2
+return:
+registersymbol(qxianass)
+]=])
+else
+autoAssemble([=[{$asm}
+qxianass:
+  db F7 47 14 00 10 00 00
+unregistersymbol(qxianass)
+dealloc(newmem)
+]=])
+end
+end
+
+
+function UDF2_CECheckbox67Click(sender)
+if UDF2_CECheckbox67.Checked == true then
+autoAssemble([=[{$asm}
+alloc(xxs,100)
+createThread(xxs)
+alloc(xh,4)
+registersymbol(xh)
+xxs:
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+cmp ecx,0
+je Fun
+pushfd
+mov eax,[esi]
+mov ecx,[libSandboxEngine.g_pPlayerCtrl]
+call libSandboxEngine.MpPlayerControl::tryWakeup
+popfd
+cmp [xh],#1
+jne xxs
+retn
+Fun:
+retn
+]=])
+else
+autoAssemble([=[{$asm}
+xh:
+dd 1
+dealloc(xxs)
+]=])
+end
+end
 
 --------------------------------------------------特殊功能--------------------------------------------
 
