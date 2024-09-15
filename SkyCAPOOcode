@@ -8,7 +8,7 @@ sponsor = [[
  2.恒 --1000台幣
 ]]
 CETrainer_CEMemo1.Lines.Text = announcement--公告
-CETrainer_CEMemo2.Lines.Text = sponsor--贊助者
+UDF2_CEMemo2.Lines.Text = sponsor--贊助者
 -------------------------------------------------------------功能模塊----------------------------------------------------------------
 
 function toSigned32(value) --負數修正
@@ -170,6 +170,7 @@ CETrainer.hide()
 sleep(500)
 UDF2.show()
 UDF2_CEMemo1.Lines.Text = announcement --綫上公告
+UDF2_CEMemo2.Lines.Text = sponsor--贊助者
 myuid = readInteger("[[libiworld.g_nHomeGardenSaveVersion+424]+0C]+0")
 hostuid = readInteger("[libSandboxEngine.g_WorldMgr]+8C")
 pingg = readInteger("libSandboxEngine.RoomSyncResMgr::s_pInstance+32C")
