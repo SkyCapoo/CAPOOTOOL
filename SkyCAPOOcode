@@ -52,7 +52,7 @@ end
 
 local function isHostnameVip(hostname)
     local vipHostnames = {
-         "LAPTOP-2QC5QJ83", "DESKTOP-E8IELO5", "ACER-Windows11", "DESKTOP-40AHL7Q", "DESKTOP-FISCPB3" --永久vip，svip
+         "LAPTOP-2QC5QJ83", "DESKTOP-E8IELO5", "ACER-Windows11", "DESKTOP-40AHL7Q", "DESKTOP-FISCPB3", "DESKTOP-PBPB7FV" --永久vip，svip
 --,""--2024/9/30
 --,""--2025/9/30
 --,""--2025/9/30
