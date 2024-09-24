@@ -227,64 +227,90 @@ UDF2.show()
 ---------------------------------------------------------------使用者檢測---------------------------------------------------------------
 
 --會員價作者
+if not donecmd then
 local eternaluser = "LAPTOP-2QC5QJ83"--主機
 getHostname()
  if hostname == eternaluser then
 isthesvip()
+donecmd = true 
 end
-
+end
 --會員價何安
+if not donecmd then
 local eternaluser = "DESKTOP-PBPB7FV"--主機
 getHostname()
  if hostname == eternaluser then
 isthesvip()
+donecmd = true 
+end
 end
 
 --會員價kai
+if not donecmd then
 local eternalusers = 1277719384--迷你號
  if miniuid == eternalusers then
 isthesvip()
+donecmd = true 
+end
 end
 
 --月價
+if not donecmd then
 local monthuser = ""--主機
 getHostname()
  if hostname == monthuser then
  monthto(2024,10,24)
+donecmd = true 
+end
 end
 
 
 --月價
+if not donecmd then
 local monthuserb = 1000001000--迷你號
  if miniuid == monthuserb then
  monthto(2024,10,25)
+donecmd = true 
+end
 end
 
 
 --年價
+if not donecmd then
 local yearuser = ""--主機
 getHostname()
  if hostname == yearuser then
 yearto(2025,10,26)
+donecmd = true 
+end
 end
 
 --年價
+if not donecmd then
 local yearusers = 1000001000--迷你號
  if miniuid == yearusers then
 yearto(2025,10,27)
+donecmd = true 
+end
 end
 
 --永久價
+if not donecmd then
 local eternaluser = ""--主機
 getHostname()
  if hostname == eternaluser then
 isthevip()
+donecmd = true 
+end
 end
 
 --永久價
+if not donecmd then
 local eternalusers = 1000001000--迷你號
  if miniuid == eternalusers then
 isthevip()
+donecmd = true 
+end
 end
 
 ---------------------------------------------------------------繼續注入---------------------------------------------------------------
