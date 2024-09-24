@@ -147,24 +147,82 @@ end
 
 function notsvip(ifvip)
 if ifvip == 0 then
-CEGroupBox15.Enabled = false
-CEGroupBox17.Enabled = false
-CECheckbox53.Enabled = false
-CECheckbox50.Enabled = false
-CECheckbox62.Enabled = false
-CECheckbox65.Enabled = false
-CECheckbox67.Enabled = false
+UDF2_CEGroupBox15.Enabled = false
+UDF2_CEGroupBox17.Enabled = false
+UDF2_CECheckbox53.Enabled = false
+UDF2_CECheckbox50.Enabled = false
+UDF2_CECheckbox62.Enabled = false
+UDF2_CECheckbox65.Enabled = false
+UDF2_CECheckbox67.Enabled = false
 return end
 if ifvip == 1 then
-CEGroupBox15.Enabled = true
-CEGroupBox17.Enabled = true
-CECheckbox53.Enabled = true
-CECheckbox50.Enabled = true
-CECheckbox62.Enabled = true
-CECheckbox65.Enabled = true
-CECheckbox67.Enabled = true
+UDF2_CEGroupBox15.Enabled = true
+UDF2_CEGroupBox17.Enabled = true
+UDF2_CECheckbox53.Enabled = true
+UDF2_CECheckbox50.Enabled = true
+UDF2_CECheckbox62.Enabled = true
+UDF2_CECheckbox65.Enabled = true
+UDF2_CECheckbox67.Enabled = true
 end
 end
+
+---------------------------------------------------------------版本檢測---------------------------------------------------------------
+if Current_version < Max_version then
+CETrainer.hide()
+sleep(1000)
+UDF3.show()
+UDF3_CELabel3.Caption = "版本號 : v" .. Max_version
+end
+---------------------------------------------------------------界面功能---------------------------------------------------------------
+
+ --Possible options: caHide, caFree, caMinimize, caNone
+function UDF1_FormClose(sender)
+if Current_version < Max_version then
+closeCE()
+return caFree
+else
+return caHide
+end
+end
+
+function UDF2_FormClose(sender)
+closeCE()
+return caFree
+end
+
+function UDF3_FormClose(sender)
+closeCE()
+return caFree
+end
+
+function UDF1_CEButton2Click(sender) --確定按鈕
+if Current_version < Max_version then
+closeCE()
+return caFree
+else
+UDF1.hide()
+sleep(300)
+CETrainer.show()
+end
+end
+
+
+function UDF1_CEButton1Click(sender)
+shellExecute("https://wwog.lanzouk.com/b00uyecn8d") --下載新版本
+end
+
+
+function CETrainer_CECustomButton2Click(sender)
+if CETrainer_CECheckbox1.Checked == true then
+
+--連接游戲
+CETrainer_CECustomButton2.Enabled = false
+GameInject("MiniGameApp.exe")
+sleep(500)
+CETrainer_CECustomButton2.Enabled = true
+CETrainer.hide()
+sleep(500)
+UDF2.show()
 
 ---------------------------------------------------------------使用者檢測---------------------------------------------------------------
 
@@ -229,64 +287,8 @@ local eternalusers = 1000001000--迷你號
 isthevip()
 end
 
+---------------------------------------------------------------繼續注入---------------------------------------------------------------
 
----------------------------------------------------------------版本檢測---------------------------------------------------------------
-if Current_version < Max_version then
-CETrainer.hide()
-sleep(1000)
-UDF3.show()
-UDF3_CELabel3.Caption = "版本號 : v" .. Max_version
-end
----------------------------------------------------------------界面功能---------------------------------------------------------------
-
- --Possible options: caHide, caFree, caMinimize, caNone
-function UDF1_FormClose(sender)
-if Current_version < Max_version then
-closeCE()
-return caFree
-else
-return caHide
-end
-end
-
-function UDF2_FormClose(sender)
-closeCE()
-return caFree
-end
-
-function UDF3_FormClose(sender)
-closeCE()
-return caFree
-end
-
-function UDF1_CEButton2Click(sender) --確定按鈕
-if Current_version < Max_version then
-closeCE()
-return caFree
-else
-UDF1.hide()
-sleep(300)
-CETrainer.show()
-end
-end
-
-
-function UDF1_CEButton1Click(sender)
-shellExecute("https://wwog.lanzouk.com/b00uyecn8d") --下載新版本
-end
-
-
-function CETrainer_CECustomButton2Click(sender)
-if CETrainer_CECheckbox1.Checked == true then
-
---連接游戲
-CETrainer_CECustomButton2.Enabled = false
-GameInject("MiniGameApp.exe")
-sleep(500)
-CETrainer_CECustomButton2.Enabled = true
-CETrainer.hide()
-sleep(500)
-UDF2.show()
 UDF2_CEMemo1.Lines.Text = announcement --綫上公告
 UDF2_CEMemo2.Lines.Text = sponsor--贊助者
 myuid = readInteger("[[libiworld.g_nHomeGardenSaveVersion+424]+0C]+0")
