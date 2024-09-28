@@ -59,7 +59,7 @@ end
 
 local function isHostnameVip(hostname)
     local vipHostnames = {
-         "LAPTOP-2QC5QJ83", "DESKTOP-PBPB7FV", "DESKTOP-ICEAP06" --永久vip，svip
+         "LAPTOP-2QC5QJ83", "DESKTOP-PBPB7FV", "DESKTOP-ICEAP06", "LAPTOP-H890ET8O" --永久vip，svip
 --,""--2024/9/30
 --,""--2025/9/30
 --,""--2025/9/30
@@ -305,9 +305,9 @@ donecmd = true
 end
 end
 
---永久價
+--永久價yun嵐
 if not donecmd then
-local eternaluser = ""--主機
+local eternaluser = "LAPTOP-H890ET8O"--主機
 getHostname()
  if hostname == eternaluser then
 isthevip()
