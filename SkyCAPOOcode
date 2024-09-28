@@ -6,6 +6,7 @@ announcement = [[1.0版本更新内容:
 sponsor = [[
  1.何安  --1000台幣
  2.恒 --1000台幣
+ 3.安然狗 --245港幣
 ]]
 CETrainer_CEMemo1.Lines.Text = announcement--公告
 UDF2_CEMemo2.Lines.Text = sponsor--贊助者
@@ -58,7 +59,7 @@ end
 
 local function isHostnameVip(hostname)
     local vipHostnames = {
-         "LAPTOP-2QC5QJ83", "DESKTOP-PBPB7FV" --永久vip，svip
+         "LAPTOP-2QC5QJ83", "DESKTOP-PBPB7FV", "DESKTOP-ICEAP06" --永久vip，svip
 --,""--2024/9/30
 --,""--2025/9/30
 --,""--2025/9/30
@@ -238,6 +239,16 @@ end
 --會員價何安
 if not donecmd then
 local eternaluser = "DESKTOP-PBPB7FV"--主機
+getHostname()
+ if hostname == eternaluser then
+isthesvip()
+donecmd = true 
+end
+end
+
+--會員價安然狗
+if not donecmd then
+local eternaluser = "DESKTOP-ICEAP06"--主機
 getHostname()
  if hostname == eternaluser then
 isthesvip()
