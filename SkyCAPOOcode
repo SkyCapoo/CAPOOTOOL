@@ -43,11 +43,10 @@ load("\27\76\117\97\83\0\25\147\13\10\26\10\4\8\4\8\8\120\86\0\0\0\0\0\0\0\0\0\0
 local PROCESS_NAME = 'MiniGameApp.exe'
 miniuid = readInteger("[[libiworld.g_nHomeGardenSaveVersion+424]+0C]+0")
 
-
 local function getHostname()
     local handle = io.popen("hostname")
     if handle then
-        local hostname = handle:read("*l")
+        hostname = handle:read("*l")
         handle:close()
         return hostname:match("^%s*(.-)%s*$")
     else
@@ -84,11 +83,38 @@ else
     messageDialog("錯誤: 無法取得電腦名稱！", mtError)
     closeCE()
 end
+
 if miniuid == nil then
     messageDialog("錯誤: 無法讀取記憶體,必須進入您的帳戶以檢查玩家ID", mtError)
     closeCE()
     return
 end
+
+--登錄輔助匯報
+local function main()
+if not openProcess(PROCESS_NAME) then
+    messageDialog("錯誤: 無法找到應用程式，請重新打開", mtError)
+    closeCE()
+    return
+end
+    if hostname == "LAPTOP-2QC5QJ83" then
+    userName = "Sky_Capoo"
+    elseif hostname == "DESKTOP-PBPB7FV" then
+    userName = "he_an"
+    elseif hostname == "DESKTOP-ICEAP06" then
+    userName = "an_ran_dog"
+    end
+    local IPADDRESS = readString("libiworld.dll+EA765C",999)
+    local PlayerName = readString("[[libiworld.g_nHomeGardenSaveVersion+5b5c]+1c]+41",999)
+    local MINIUID = readInteger("[[libiworld.g_nHomeGardenSaveVersion+424]+C]+0")
+    local webhook_url = "https://discord.com/api/webhooks/1292814066078716006/GsmY9Fe81vp6PRfv5hSU3uFB1C3VLOLz0SgZeD3xLF1J3bs7FHTDAFVcKwPiUMj-FeE8"
+    local message = '{"content": "Computer:(' .. hostname .. ') Username:(' .. userName .. ') IP:(' .. IPADDRESS .. ') UID:(' .. MINIUID .. ') logged in to CAPOO-TOOL!"}'
+    local command = 'curl -X POST -H "Content-Type: application/json" -d "' .. message:gsub('"', '\\"') .. '" "' .. webhook_url .. '"'
+    os.execute(command)
+end
+main()
+
+
 -- VIP UID 列表
 local vipUIDs = {1088712050, 1089142268, 1251995024, 1277719384
 --,""--2024/9/30
