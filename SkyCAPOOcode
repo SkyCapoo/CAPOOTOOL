@@ -1440,7 +1440,7 @@ end
 function UDF2_CECheckbox43Click(sender)
 if UDF2_CECheckbox43.Checked == true then
 autoAssemble([=[{$asm}
-aobscanmodule(asnsn,libSandboxEngine.dll,74 ?? 6A ?? EB ?? 6A ?? E8 ?? ?? ?? ?? 8B 8F) // should be unique
+aobscanmodule(asnsn,libSandboxEngine.dll,74 ?? 6A ?? EB ?? 6A ?? E8 ?? ?? ?? ?? 8B 8F)
 registersymbol(asnsn)
 asnsn:
 db EB
@@ -1470,7 +1470,7 @@ end
 function UDF2_CECheckbox45Click(sender)
 if UDF2_CECheckbox45.Checked == true then
 autoAssemble([=[{$asm}
-aobscanmodule(asnssn,libSandboxEngine.dll,74 ?? C7 87 ?? ?? ?? ?? ?? ?? ?? ?? F3) // should be unique
+aobscanmodule(asnssn,libSandboxEngine.dll,74 ?? C7 87 ?? ?? ?? ?? ?? ?? ?? ?? F3)
 registersymbol(asnssn)
 asnssn:
 db 90 90
